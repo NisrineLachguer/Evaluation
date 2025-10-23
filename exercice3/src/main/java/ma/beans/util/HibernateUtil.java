@@ -1,12 +1,13 @@
-package ma.projet.util;
+package ma.beans.util;
 
-import ma.projet.classes.Employe;
-import ma.projet.classes.EmployeTache;
-import ma.projet.classes.Projet;
-import ma.projet.classes.Tache;
+import ma.beans.classes.Femme;
+import ma.beans.classes.Homme;
+import ma.beans.classes.Mariage;
+import ma.beans.classes.Personne;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
+import ma.beans.classes.*;
 
 import java.util.Properties;
 
@@ -20,7 +21,7 @@ public class HibernateUtil {
             // CORRECTION : Utiliser le bon nom de base de données
             Properties settings = new Properties();
             settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-            settings.put(Environment.URL, "jdbc:mysql://localhost:3306/gestion_projets?useSSL=false&serverTimezone=UTC");
+            settings.put(Environment.URL, "jdbc:mysql://localhost:3306/gestion_etat_civil?useSSL=false&serverTimezone=UTC");
             settings.put(Environment.USER, "root");
             settings.put(Environment.PASS, "");
             settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
@@ -32,10 +33,10 @@ public class HibernateUtil {
             configuration.setProperties(settings);
 
             // Ajouter les classes annotées
-            configuration.addAnnotatedClass(Employe.class);
-            configuration.addAnnotatedClass(EmployeTache.class);
-            configuration.addAnnotatedClass(Projet.class);
-            configuration.addAnnotatedClass(Tache.class);
+            configuration.addAnnotatedClass(Femme.class);
+            configuration.addAnnotatedClass(Homme.class);
+            configuration.addAnnotatedClass(Mariage.class);
+            configuration.addAnnotatedClass(Personne.class);
 
             sessionFactory = configuration.buildSessionFactory();
 
